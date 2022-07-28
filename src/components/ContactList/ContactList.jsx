@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types';
 
-const ContactList = ({ filter, contacts }) => {
+const ContactList = ({ filter, contacts, handleDeleteContacts }) => {
   return (
     <ul>
       {contacts
         .filter(el => el.name.toLowerCase().includes(filter.toLocaleLowerCase()))
         .map(el => (
           <li key={el.id}>
-            <p> {el.name}</p>
-            <p>{el.number}</p>
+            <p>
+              {' '}
+              {el.name}: {el.number}
+            </p>
+            <button type="button" onClick={() => handleDeleteContacts(el.id)}>
+              Delete
+            </button>
           </li>
         ))}
     </ul>
@@ -17,4 +22,8 @@ const ContactList = ({ filter, contacts }) => {
 
 export default ContactList;
 
-ContactList.propTypes = {};
+ContactList.propTypes = {
+  filter: PropTypes.string.isRequired,
+  contacts: PropTypes.array.isRequired,
+  handleDeleteContacts: PropTypes.func.isRequired,
+};

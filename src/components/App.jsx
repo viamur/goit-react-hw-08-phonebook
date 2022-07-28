@@ -26,16 +26,24 @@ export class App extends Component {
     this.setState({ [input.name]: input.value });
   };
 
+  handleDeleteContacts = id => {
+    this.setState({ contacts: this.state.contacts.filter(el => el.id !== id) });
+  };
+
   render() {
     const { contacts, filter } = this.state;
     return (
       <div>
         <h1>Phonebok</h1>
-        <ContactForm handleSubmitForm={this.handleSubmitForm} />
+        <ContactForm contacts={contacts} handleSubmitForm={this.handleSubmitForm} />
 
         <h2>Contacts</h2>
         <Filter title="Find contacts by name" handleChangeInput={this.handleChangeInput} />
-        <ContactList filter={filter} contacts={contacts} />
+        <ContactList
+          filter={filter}
+          contacts={contacts}
+          handleDeleteContacts={this.handleDeleteContacts}
+        />
       </div>
     );
   }

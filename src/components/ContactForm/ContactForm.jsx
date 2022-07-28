@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 class ContactForm extends Component {
   state = {
@@ -16,7 +17,7 @@ class ContactForm extends Component {
   handleFormCompilation = e => {
     e.preventDefault();
     const { name, number } = this.state;
-    const { handleSubmitForm } = this.props;
+    const { handleSubmitForm, contacts } = this.props;
     const id = nanoid();
 
     const obj = {
@@ -25,8 +26,13 @@ class ContactForm extends Component {
       number,
     };
 
-    handleSubmitForm(obj);
-    this.setState({ name: '', number: '' });
+    const check = contacts.find(el => el.name === name);
+    if (!check) {
+      handleSubmitForm(obj);
+      this.setState({ name: '', number: '' });
+    } else {
+      Report.failure('Error', name + 'is already in contacts', 'Okay');
+    }
   };
 
   render() {
@@ -67,4 +73,5 @@ export default ContactForm;
 
 ContactForm.propTypes = {
   handleSubmitForm: PropTypes.func.isRequired,
+  contacts: PropTypes.array.isRequired,
 };
