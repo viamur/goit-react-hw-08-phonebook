@@ -1,0 +1,26 @@
+.wrap {
+  display: flex;
+  background-color: orange;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 10px 13px -7px #000000;
+  /* padding-left: 40px; */
+}
+.phonebook {
+  padding: 40px;
+}
+.title {
+  color: #282828;
+  margin-bottom: 70px;
+  text-transform: uppercase;
+  text-shadow: 0px 10px 13px #000000a6;
+}
+.contacts {
+  background-color: white;
+  padding: 40px;
+  padding-top: 50px;
+  min-width: 320px;
+}
+.subTitle {
+  letter-spacing: 1px;
+}

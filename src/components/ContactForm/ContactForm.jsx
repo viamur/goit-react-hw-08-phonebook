@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { Report } from 'notiflix/build/notiflix-report-aio';
+import s from './ContactForm.module.css';
 
 class ContactForm extends Component {
   state = {
@@ -38,12 +39,14 @@ class ContactForm extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <form onSubmit={this.handleFormCompilation}>
-        <label>
-          Name
+      <form onSubmit={this.handleFormCompilation} className={s.form}>
+        <label className={s.label}>
+          {/* <p className={s.text}>Name</p> */}
           <input
             type="text"
             name="name"
+            className={s.input}
+            placeholder="Name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
@@ -51,11 +54,13 @@ class ContactForm extends Component {
             onChange={this.handleChangeInput}
           />
         </label>
-        <label>
-          Number
+        <label className={s.label}>
+          {/* <p className={s.text}>Number</p> */}
           <input
             type="tel"
             name="number"
+            className={s.input}
+            placeholder="Number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
@@ -63,7 +68,9 @@ class ContactForm extends Component {
             onChange={this.handleChangeInput}
           />
         </label>
-        <button type="submit">Add contact</button>
+        <button className={s.btn} type="submit">
+          Add contact
+        </button>
       </form>
     );
   }

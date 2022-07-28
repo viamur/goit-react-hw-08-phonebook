@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types';
+import s from './ContactList.module.css';
 
 const ContactList = ({ filter, contacts, handleDeleteContacts }) => {
   return (
-    <ul>
+    <ul className={s.list}>
       {contacts
         .filter(el => el.name.toLowerCase().includes(filter.toLocaleLowerCase()))
         .map(el => (
-          <li key={el.id}>
-            <p>
-              {' '}
-              {el.name}: {el.number}
+          <li key={el.id} className={s.item}>
+            <p className={s.text}>
+              {el.name}: <span className={s.num}>{el.number}</span>
             </p>
-            <button type="button" onClick={() => handleDeleteContacts(el.id)}>
-              Delete
+            <button type="button" className={s.btn} onClick={() => handleDeleteContacts(el.id)}>
+              x
             </button>
           </li>
         ))}
