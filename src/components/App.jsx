@@ -42,7 +42,7 @@ export class App extends Component {
         </div>
 
         <div className={s.contacts}>
-          <h2 className={s.subTitle}>Contacts</h2>
+          <h2 className={s.subTitle}>Contacts: {contacts.length}</h2>
           <ContactList
             filter={filter}
             contacts={contacts}

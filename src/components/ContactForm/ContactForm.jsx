@@ -27,7 +27,8 @@ class ContactForm extends Component {
       number,
     };
 
-    const check = contacts.find(el => el.name === name);
+    const check = contacts.find(el => el.name.toLowerCase() === name.toLowerCase());
+
     if (!check) {
       handleSubmitForm(obj);
       this.setState({ name: '', number: '' });
