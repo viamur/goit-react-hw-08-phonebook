@@ -3,16 +3,21 @@ import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 import s from './App.module.css';
+import { useRef } from 'react';
 
 export const App = () => {
   const [contacts, setContacts] = useState(
     () => JSON.parse(localStorage.getItem('contacts')) ?? []
   );
   const [filter, setFilter] = useState('');
+  const firstStartRef = useRef(false);
 
   useEffect(() => {
-    const data = JSON.stringify(contacts);
-    localStorage.setItem('contacts', data);
+    if (firstStartRef.current) {
+      const data = JSON.stringify(contacts);
+      localStorage.setItem('contacts', data);
+    }
+    firstStartRef.current = true;
   }, [contacts]);
 
   const handleSubmitForm = obj => {
