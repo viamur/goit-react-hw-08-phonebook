@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from 'redux/contacts/item/actions';
+import { addItem } from 'redux/contacts/items/ItemsActions';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import { nanoid } from 'nanoid';
 import s from './ContactForm.module.css';

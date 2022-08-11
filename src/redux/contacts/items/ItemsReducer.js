@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { addItem, removeItem } from './actions';
+import { addItem, removeItem } from './ItemsActions';
 
 const items = createReducer([], {
   [addItem]: (state, action) => [...state, action.payload],
