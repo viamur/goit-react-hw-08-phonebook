@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
-import { Report } from 'notiflix/build/notiflix-report-aio';
-import s from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from 'redux/contacts/item/actions';
+import { Report } from 'notiflix/build/notiflix-report-aio';
+import { nanoid } from 'nanoid';
+import s from './ContactForm.module.css';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -69,8 +68,3 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
-
-ContactForm.propTypes = {
-  handleSubmitForm: PropTypes.func.isRequired,
-  contacts: PropTypes.array.isRequired,
-};

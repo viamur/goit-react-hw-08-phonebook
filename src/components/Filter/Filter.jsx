@@ -25,6 +25,4 @@ export default Filter;
 
 Filter.propTypes = {
   title: PropTypes.string.isRequired,
-  // value: PropTypes.string,
-  // handleChangeInput: PropTypes.func.isRequired,
 };

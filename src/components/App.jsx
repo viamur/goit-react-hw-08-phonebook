@@ -1,10 +1,9 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 import s from './App.module.css';
-import { useRef } from 'react';
-import { useSelector } from 'react-redux';
 
 export const App = () => {
   const contacts = useSelector(state => state.contacts.items);
