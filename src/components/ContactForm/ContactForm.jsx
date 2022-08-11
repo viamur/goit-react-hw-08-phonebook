@@ -3,10 +3,15 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import s from './ContactForm.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem } from 'redux/contacts/item/actions';
 
-const ContactForm = ({ handleSubmitForm, contacts }) => {
+const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const contacts = useSelector(state => state.contacts.items);
+  const dispatch = useDispatch();
 
   const handleChangeInput = e => {
     const input = e.target;
@@ -20,7 +25,7 @@ const ContactForm = ({ handleSubmitForm, contacts }) => {
     const id = nanoid();
     const check = contacts.find(el => el.name.toLowerCase() === name.toLowerCase());
     if (!check) {
-      handleSubmitForm({ id, name, number });
+      dispatch(addItem({ id, name, number }));
       setName('');
       setNumber('');
     } else {
