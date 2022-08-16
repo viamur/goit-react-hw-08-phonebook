@@ -1,11 +1,16 @@
 import ContactForm from './ContactForm/ContactForm';
+import { Block } from 'notiflix/build/notiflix-block-aio';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 import s from './App.module.css';
 import { useSelector } from 'react-redux';
+import { getStateItems, getStateLoading } from 'redux/contacts/items/itemsSelector';
 
 export const App = () => {
-  const contacts = useSelector(state => state.contacts.items);
+  const contacts = useSelector(getStateItems);
+  const isLoading = useSelector(getStateLoading);
+
+  isLoading ? Block.circle('.js-element') : Block.remove('.js-element');
 
   return (
     <div className={s.wrap}>
@@ -15,7 +20,7 @@ export const App = () => {
         <Filter title="Find contacts by name" />
       </div>
 
-      <div className={s.contacts}>
+      <div className={`${s.contacts} js-element`}>
         <h2 className={s.subTitle}>Contacts: {contacts.length}</h2>
         <ContactList />
       </div>
