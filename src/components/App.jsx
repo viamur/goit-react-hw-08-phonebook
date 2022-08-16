@@ -4,7 +4,7 @@ import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 import s from './App.module.css';
 import { useSelector } from 'react-redux';
-import { getStateItems, getStateLoading } from 'redux/contacts/items/itemsSelector';
+import { getStateItems, getStateLoading } from 'redux/contacts/contactsSelector';
 
 export const App = () => {
   const contacts = useSelector(getStateItems);

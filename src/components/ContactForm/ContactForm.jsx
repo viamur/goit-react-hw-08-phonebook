@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import s from './ContactForm.module.css';
-import { addContacts } from 'redux/contacts/items/itemsOperations';
-import { getStateItems } from 'redux/contacts/items/itemsSelector';
+import { addContacts } from 'redux/contacts/contactsOperations';
+import { getStateItems } from 'redux/contacts/contactsSelector';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
