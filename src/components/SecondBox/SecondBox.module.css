@@ -1,0 +1,9 @@
+.box {
+  background-color: white;
+  padding: 40px;
+  padding-top: 50px;
+  min-width: 320px;
+}
+.title {
+  letter-spacing: 1px;
+}

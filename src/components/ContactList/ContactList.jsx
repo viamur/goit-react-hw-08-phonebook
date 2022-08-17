@@ -3,9 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getContacts, removeContacts } from 'redux/contacts/contactsOperations';
 import s from './ContactList.module.css';
 import { contactsAfterFilter } from 'redux/contacts/contactsSelector';
+import { getStateLoading } from 'redux/contacts/contactsSelector';
+import { Block } from 'notiflix/build/notiflix-block-aio';
 
 const ContactList = () => {
   const contacts = useSelector(contactsAfterFilter);
+  const isLoading = useSelector(getStateLoading);
+
+  // isLoading ? Block.circle('.js-element') : Block.remove('.js-element');
 
   const dispatch = useDispatch();
 
@@ -15,7 +20,7 @@ const ContactList = () => {
   }, []);
 
   return (
-    <ul className={s.list}>
+    <ul className={`${s.list} js-element`}>
       {contacts.map(el => (
         <li key={el.id} className={s.item}>
           <p className={s.text}>

@@ -6,7 +6,7 @@ import { getStateFilter } from 'redux/contacts/contactsSelector';
 
 const Filter = ({ title }) => {
   const value = useSelector(getStateFilter);
-  
+
   const dispatch = useDispatch();
   return (
     <>
@@ -26,5 +26,5 @@ const Filter = ({ title }) => {
 export default Filter;
 
 Filter.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 };
