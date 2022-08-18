@@ -49,7 +49,7 @@ const contactsSlice = createSlice({
     },
     [removeContacts.fulfilled]: (state, { payload }) => {
       state.isLoading = false;
-      state.items = state.items.filter(item => item.id !== payload.id);
+      state.items = state.items.filter(item => item.id !== payload);
     },
   },
 });

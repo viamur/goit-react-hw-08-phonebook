@@ -33,7 +33,6 @@ const ContactForm = () => {
 
   return (
     <>
-      <h1 className={s.title}>PHONEBOOK</h1>
       <form onSubmit={handleFormCompilation} className={s.form}>
         <label className={s.label}>
           <input

@@ -5,20 +5,29 @@ import FirstBox from '../FirstBox/FirstBox';
 import SecondBox from '../SecondBox/SecondBox';
 import ContactForm from '../ContactForm/ContactForm';
 import Filter from '../Filter/Filter';
+import { useSelector } from 'react-redux';
+import { getStateToken } from 'redux/user/userSelector';
+import s from './SharedLayout.module.css';
 
-const SharedLayout = () => {
+const SharedLayout = ({ children }) => {
+  const isAuth = useSelector(getStateToken);
   return (
     <Container>
       <FirstBox>
-        <ContactForm />
-        <Filter />
+        <h1 className={s.title}>PHONEBOOK</h1>
+        {isAuth ? (
+          <>
+            <ContactForm />
+            <Filter />
+          </>
+        ) : (
+          <h1>Hello</h1>
+        )}
       </FirstBox>
 
       <UserMenu />
 
-      <SecondBox>
-        <Outlet />
-      </SecondBox>
+      <SecondBox>{children}</SecondBox>
     </Container>
   );
 };

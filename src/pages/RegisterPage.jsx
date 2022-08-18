@@ -1,5 +1,12 @@
+import AuthForm from 'components/AuthForm/AuthForm';
+import SharedLayout from 'components/SharedLayout/SharedLayout';
+
 const RegisterPage = () => {
-  return <h1>RegisterPage</h1>;
+  return (
+    <SharedLayout>
+      <AuthForm />
+    </SharedLayout>
+  );
 };
 
 export default RegisterPage;

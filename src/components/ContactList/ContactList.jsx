@@ -20,18 +20,21 @@ const ContactList = () => {
   }, []);
 
   return (
-    <ul className={`${s.list} js-element`}>
-      {contacts.map(el => (
-        <li key={el.id} className={s.item}>
-          <p className={s.text}>
-            {el.name}: <span className={s.num}>{el.number}</span>
-          </p>
-          <button type="button" className={s.btn} onClick={() => dispatch(removeContacts(el.id))}>
-            x
-          </button>
-        </li>
-      ))}
-    </ul>
+    <>
+      <h2>Contacts: {contacts.length}</h2>
+      <ul className={`${s.list} js-element`}>
+        {contacts.map(el => (
+          <li key={el.id} className={s.item}>
+            <p className={s.text}>
+              {el.name}: <span className={s.num}>{el.number}</span>
+            </p>
+            <button type="button" className={s.btn} onClick={() => dispatch(removeContacts(el.id))}>
+              x
+            </button>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 
