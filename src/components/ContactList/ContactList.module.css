@@ -4,6 +4,10 @@
   overflow: auto;
   height: 310px;
 }
+.title {
+  letter-spacing: 1px;
+  color: #282828;
+}
 .item {
   display: flex;
   align-items: center;

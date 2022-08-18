@@ -21,7 +21,9 @@ const SharedLayout = ({ children }) => {
             <Filter />
           </>
         ) : (
-          <h1>Hello</h1>
+          <p className={s.text}>
+            Hello dear guest! Register and use our platform to save your phone contacts.
+          </p>
         )}
       </FirstBox>
 

@@ -1,10 +1,12 @@
-import TextField from '@mui/material/TextField';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUserThunk, registerUserThunk } from 'redux/user/userOperations';
 import { Link, useLocation } from 'react-router-dom';
-import { getStateToken } from 'redux/user/userSelector';
+import { loginUserThunk, registerUserThunk } from 'redux/user/userOperations';
+import { getStateIsLoading, getStateToken } from 'redux/user/userSelector';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import s from './AuthForm.module.css';
 
 const AuthForm = () => {
   const [name, setName] = useState('');
@@ -12,6 +14,7 @@ const AuthForm = () => {
   const [password, setPassword] = useState('');
 
   const location = useLocation().pathname;
+  const loading = useSelector(getStateIsLoading);
 
   const dispatch = useDispatch();
 
@@ -22,6 +25,23 @@ const AuthForm = () => {
     input.name === 'email' && setEmail(input.value);
     input.name === 'password' && setPassword(input.value);
   };
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        light: '#757ce8',
+        main: 'orange',
+        dark: '#002884',
+        contrastText: '#fff',
+      },
+      secondary: {
+        light: '#ff7961',
+        main: '#f44336',
+        dark: '#ba000d',
+        contrastText: '#000',
+      },
+    },
+  });
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -39,69 +59,64 @@ const AuthForm = () => {
 
   return (
     <>
-      <h2>{location === '/login' ? 'Sign in' : 'Sign up'}</h2>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
-        {location === '/register' && (
-          <input
-            type="text"
-            placeholder="Name"
-            name="name"
-            value={name}
+      <h2 className={s.title}>{location === '/login' ? 'Sign in' : 'Sign up'}</h2>
+      <form onSubmit={handleSubmit} className={s.form}>
+        <ThemeProvider theme={theme}>
+          {location === '/register' && (
+            <TextField
+              label="Name"
+              name="name"
+              value={name}
+              onChange={handleChangeInput}
+              variant="standard"
+              margin="normal"
+            />
+          )}
+          <TextField
+            name="email"
+            value={email}
             onChange={handleChangeInput}
+            type="email"
+            label="Email"
+            variant="standard"
+            margin="normal"
           />
-        )}
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={email}
-          onChange={handleChangeInput}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={password}
-          onChange={handleChangeInput}
-          minLength={7}
-        />
-        <button type="submit">{location === '/register' ? 'Register' : 'Login'}</button>
+          <TextField
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleChangeInput}
+            minLength={7}
+            label="Password"
+            variant="standard"
+            margin="normal"
+          />
+        </ThemeProvider>
+        <Button variant="outlined" type="submit">
+          {location === '/register' ? 'Register' : 'Login'}
+        </Button>
       </form>
-      {location === '/login' ? (
-        <div>
-          <p>Don't have an account?</p>
-          <Link to="/register">Sign up</Link>
-        </div>
-      ) : (
-        <div>
-          <p>Do you have an account?</p>
-          <Link to="/login">Sign in</Link>
-        </div>
-      )}
+      <div className={s.info}>
+        {location === '/login' ? (
+          <>
+            <p className={s.text}>Don't have an account?</p>
+            <Link to="/register" className={s.link}>
+              Sign up
+            </Link>
+          </>
+        ) : (
+          <>
+            <p className={s.text}>Do you have an account?</p>
+            <Link to="/login" className={s.link}>
+              Sign in
+            </Link>
+          </>
+        )}
+      </div>
     </>
   );
 };
 export default AuthForm;
 
 {
-  /* <ThemeProvider theme={theme}>
-  <TextField id="standard-basic" label="Standard" variant="standard" />
-</ThemeProvider> */
 }
-
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       light: '#757ce8',
-//       main: 'red',
-//       dark: '#002884',
-//       contrastText: '#fff',
-//     },
-//     secondary: {
-//       light: '#ff7961',
-//       main: '#f44336',
-//       dark: '#ba000d',
-//       contrastText: '#000',
-//     },
-//   },
-// });

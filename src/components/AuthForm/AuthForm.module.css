@@ -1,0 +1,19 @@
+.title {
+  letter-spacing: 1px;
+  color: #282828;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text {
+  margin-right: 10px;
+}
+.link {
+  color: orange;
+}
