@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUserThunk } from 'redux/user/userOperations';
 import { getStateEmail } from 'redux/user/userSelector';
+import img3 from '../../img/3.png';
+import img1 from '../../img/1.png';
 import s from './UserMenu.module.css';
 
 const UserMenu = () => {
@@ -15,24 +17,8 @@ const UserMenu = () => {
           Logout
         </button>
       )}
-      <a href="https://github.com/viamur" target="_blank">
-        {email ? (
-          <img
-            src="https://pngimg.com/uploads/github/github_PNG82.png"
-            alt="avatar"
-            className={s.img}
-            width={30}
-            height={30}
-          />
-        ) : (
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
-            alt="avatar"
-            className={s.img}
-            width={30}
-            height={30}
-          />
-        )}
+      <a href="https://github.com/viamur" target="_blank" rel="noreferrer">
+        <img src={email ? img1 : img3} alt="avatar" className={s.img} width={30} height={30} />
       </a>
     </div>
   );

@@ -31,6 +31,8 @@
 }
 .img {
   transition: all 250ms linear;
+  border-radius: 50%;
+  background-color: orange;
 }
 .img:hover {
   transform: scale(1.2);

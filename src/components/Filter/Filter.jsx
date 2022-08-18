@@ -1,16 +1,15 @@
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import s from './Filter.module.css';
 import { changeFilter } from '../../redux/contacts/contactsSlice';
 import { getStateFilter } from 'redux/contacts/contactsSelector';
 
-const Filter = ({ title }) => {
+const Filter = () => {
   const value = useSelector(getStateFilter);
 
   const dispatch = useDispatch();
   return (
     <>
-      <p className={s.title}>{title}</p>
+      <p className={s.title}>Find contacts by name</p>
       <input
         type="text"
         placeholder="Enter name"
@@ -24,7 +23,3 @@ const Filter = ({ title }) => {
 };
 
 export default Filter;
-
-Filter.propTypes = {
-  title: PropTypes.string,
-};

@@ -1,11 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { getStateItems, getStateLoading } from 'redux/contacts/contactsSelector';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import ContactsPage from '../pages/ContactsPage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
-import HomePage from '../pages/HomePage';
-import SharedLayout from './SharedLayout/SharedLayout';
 import { useEffect } from 'react';
 import { getStateToken } from 'redux/user/userSelector';
 import { getUserThunk } from 'redux/user/userOperations';
@@ -20,6 +17,7 @@ export const App = () => {
     if (token) {
       dispatch(getUserThunk());
     }
+    // eslint-disable-next-line
   }, []);
 
   return (

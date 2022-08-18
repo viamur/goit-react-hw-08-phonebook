@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { loginUserThunk, registerUserThunk } from 'redux/user/userOperations';
-import { getStateIsLoading, getStateToken } from 'redux/user/userSelector';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -14,7 +13,6 @@ const AuthForm = () => {
   const [password, setPassword] = useState('');
 
   const location = useLocation().pathname;
-  const loading = useSelector(getStateIsLoading);
 
   const dispatch = useDispatch();
 
@@ -117,6 +115,3 @@ const AuthForm = () => {
   );
 };
 export default AuthForm;
-
-{
-}

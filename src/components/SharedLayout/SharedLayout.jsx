@@ -1,4 +1,3 @@
-import { Outlet } from 'react-router-dom';
 import Container from '../Container/Container';
 import UserMenu from '../UserMenu/UserMenu';
 import FirstBox from '../FirstBox/FirstBox';
@@ -22,7 +21,7 @@ const SharedLayout = ({ children }) => {
           </>
         ) : (
           <p className={s.text}>
-            Hello dear guest! Register and use our platform to save your phone contacts.
+            Hello dear guest! 👋 Register and use our platform to save your phone ☎️ contacts.
           </p>
         )}
       </FirstBox>

@@ -10,7 +10,7 @@ const userSlice = createSlice({
     error: null,
   },
   extraReducers: {
-    [loginUserThunk.pending]: (state, { payload }) => {
+    [loginUserThunk.pending]: (state, _) => {
       state.isLoading = true;
       state.error = null;
     },
@@ -25,7 +25,7 @@ const userSlice = createSlice({
       state.token = payload.token;
       state.email = payload.email;
     },
-    [registerUserThunk.pending]: (state, { payload }) => {
+    [registerUserThunk.pending]: (state, _) => {
       state.isLoading = true;
       state.error = null;
     },
@@ -40,7 +40,7 @@ const userSlice = createSlice({
       state.token = payload.token;
       state.email = payload.email;
     },
-    [logoutUserThunk.pending]: (state, { payload }) => {
+    [logoutUserThunk.pending]: (state, _) => {
       state.isLoading = true;
       state.error = null;
     },
@@ -50,12 +50,12 @@ const userSlice = createSlice({
       state.email = null;
       state.error = payload;
     },
-    [logoutUserThunk.fulfilled]: (state, { payload }) => {
+    [logoutUserThunk.fulfilled]: (state, _) => {
       state.isLoading = false;
       state.token = null;
       state.email = null;
     },
-    [getUserThunk.pending]: (state, { payload }) => {
+    [getUserThunk.pending]: (state, _) => {
       state.isLoading = true;
       state.error = null;
     },
