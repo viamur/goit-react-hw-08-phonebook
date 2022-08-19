@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { loginUserThunk, registerUserThunk } from 'redux/user/userOperations';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import s from './AuthForm.module.css';
+import { getStateError } from 'redux/user/userSelector';
 
 const AuthForm = () => {
   const [name, setName] = useState('');
@@ -13,6 +14,7 @@ const AuthForm = () => {
   const [password, setPassword] = useState('');
 
   const location = useLocation().pathname;
+  const error = useSelector(getStateError);
 
   const dispatch = useDispatch();
 
@@ -68,6 +70,7 @@ const AuthForm = () => {
               onChange={handleChangeInput}
               variant="standard"
               margin="normal"
+              required
             />
           )}
           <TextField
@@ -78,6 +81,7 @@ const AuthForm = () => {
             label="Email"
             variant="standard"
             margin="normal"
+            required
           />
           <TextField
             type="password"
@@ -88,11 +92,13 @@ const AuthForm = () => {
             label="Password"
             variant="standard"
             margin="normal"
+            required
           />
         </ThemeProvider>
         <Button variant="outlined" type="submit">
           {location === '/register' ? 'Register' : 'Login'}
         </Button>
+        {error && <p className={s.error}>Incorrect password or email</p>}
       </form>
       <div className={s.info}>
         {location === '/login' ? (

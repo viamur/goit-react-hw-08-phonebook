@@ -17,3 +17,10 @@
 .link {
   color: orange;
 }
+.error {
+  color: red;
+  font-size: 12px;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 0;
+}

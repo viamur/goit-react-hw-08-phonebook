@@ -1,24 +1,37 @@
+import { useSelector } from 'react-redux';
+import { Suspense, useEffect, lazy } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Container from '../Container/Container';
-import UserMenu from '../UserMenu/UserMenu';
 import FirstBox from '../FirstBox/FirstBox';
 import SecondBox from '../SecondBox/SecondBox';
-import ContactForm from '../ContactForm/ContactForm';
-import Filter from '../Filter/Filter';
-import { useSelector } from 'react-redux';
 import { getStateToken } from 'redux/user/userSelector';
 import s from './SharedLayout.module.css';
+import Loader from 'components/Loader/Loader';
 
-const SharedLayout = ({ children }) => {
+const BlockForContacts = lazy(() =>
+  import('../BlockForContacts/BlockForContacts' /* webpackChunkName: 'BlockForContacts' */)
+);
+
+const SharedLayout = () => {
   const isAuth = useSelector(getStateToken);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (pathname === '/') {
+      isAuth ? navigate('contacts') : navigate('login');
+    }
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <Container>
       <FirstBox>
         <h1 className={s.title}>PHONEBOOK</h1>
         {isAuth ? (
-          <>
-            <ContactForm />
-            <Filter />
-          </>
+          <Suspense fallback={<Loader />}>
+            <BlockForContacts />
+          </Suspense>
         ) : (
           <p className={s.text}>
             Hello dear guest! 👋 Register and use our platform to save your phone ☎️ contacts.
@@ -26,9 +39,11 @@ const SharedLayout = ({ children }) => {
         )}
       </FirstBox>
 
-      <UserMenu />
-
-      <SecondBox>{children}</SecondBox>
+      <SecondBox>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+      </SecondBox>
     </Container>
   );
 };

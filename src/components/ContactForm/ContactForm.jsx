@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Report } from 'notiflix/build/notiflix-report-aio';
 import s from './ContactForm.module.css';
 import { addContacts } from 'redux/contacts/contactsOperations';
-import { getStateItems } from 'redux/contacts/contactsSelector';
+import { getStateItems, getStateLoading } from 'redux/contacts/contactsSelector';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const contacts = useSelector(getStateItems);
+  const isLoading = useSelector(getStateLoading);
   const dispatch = useDispatch();
 
   const handleChangeInput = e => {
@@ -60,8 +61,8 @@ const ContactForm = () => {
             onChange={handleChangeInput}
           />
         </label>
-        <button className={s.btn} type="submit">
-          Add contact
+        <button className={s.btn} type="submit" disabled={isLoading}>
+          {isLoading ? 'Loading...' : 'Add contact'}
         </button>
       </form>
     </>
